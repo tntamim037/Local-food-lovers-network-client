@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MyLink from "./MyLink";
 
 const Navbar = () => {
   const navLinks = (
     <>
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/all-reviews">All Reviews</Link></li>
-      <li><Link to="/favorites">My Favorites</Link></li>
-      <li><Link to="/about">About</Link></li>
+    
+      <li><MyLink to="/">Home</MyLink></li>
+      <li><MyLink to="/add-review">Add Review</MyLink></li>
+      <li><MyLink to="/all-reviews">All Reviews</MyLink></li>
+      <li><MyLink to="/favorites">My Favorites</MyLink></li>
     </>
   )
 
@@ -33,17 +35,17 @@ const Navbar = () => {
             </svg>
           </div>
 
-          {/* Mobile Dropdown Menu */}
+          
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             {navLinks}
           </ul>
         </div>
 
         
-        <Link to="/" className="btn btn-ghost normal-case text-xl font-bold text-amber-600">
+        <Link to="/" className="btn btn-ghost normal-case text-2xl font-bold text-amber-600">
           🍔 Local Food Lovers
         </Link>
       </div>
@@ -60,8 +62,8 @@ const Navbar = () => {
           <Link to="/login" className="btn btn-outline btn-sm border-amber-500 text-amber-600">
             Login
           </Link>
-          <Link to="/register" className="btn btn-sm bg-amber-600 text-white hover:bg-amber-500">
-            Register
+          <Link to="/logout" className="btn btn-sm bg-amber-600 text-white hover:bg-amber-500">
+            Logout
           </Link>
         </div>
 

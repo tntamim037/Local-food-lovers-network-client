@@ -8,11 +8,11 @@ const Footer = () => {
   return (
     <footer className="bg-base-200 text-base-content mt-10 border-t">
       
-      <div className="max-w-screen-xl mx-auto p-10 flex flex-col lg:flex-row justify-between gap-8">
+      <div className="max-w-screen mx-auto p-10 flex flex-col lg:flex-row justify-between gap-8">
         
         <aside className="flex-1">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-400 via-yellow-300 to-amber-400 flex items-center justify-center text-white font-extrabold text-lg">
+            <div className="w-10 h-10 rounded-2xl bg-linear-to-tr from-rose-400 via-yellow-300 to-amber-400 flex items-center justify-center text-white font-extrabold text-lg">
               LF
             </div>
             <span className="font-semibold text-lg text-amber-600">Local Food Lovers</span>
