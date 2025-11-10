@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import MyLink from "./MyLink";
+import { AuthContext } from "../Providers/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext)
+  const handleLogout = () => { 
+    logOut()
+      .then(() => toast.success("Logged out successfully"))
+      .catch((error) => toast.error(error.message));
+  }
   const navLinks = (
     <>
     
@@ -58,34 +66,29 @@ const Navbar = () => {
       
       <div className="navbar-end">
        
-        <div className="flex gap-2">
-          <Link to="/login" className="btn btn-outline btn-sm border-amber-500 text-amber-600">
-            Login
-          </Link>
-          <Link to="/logout" className="btn btn-sm bg-amber-600 text-white hover:bg-amber-500">
-            Logout
-          </Link>
-        </div>
-
-        {/* when user logged in (example dropdown) */}
-        {/* 
-        <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img alt="User" src="https://i.ibb.co/2cWqV6v/user.jpg" />
-            </div>
+        {!user ? (
+          <div className="flex gap-2">
+            <Link to="/login" className="btn btn-outline btn-sm border-amber-500 text-amber-600">
+              Login
+            </Link>
+            <Link to="/logout" className="btn btn-sm bg-amber-600 text-white hover:bg-amber-500">
+              Logout
+            </Link>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li><Link to="/add-review">Add Review</Link></li>
-            <li><Link to="/my-reviews">My Reviews</Link></li>
-            <li><Link to="/my-favorites">My Favorites</Link></li>
-            <li><button>Logout</button></li>
-          </ul>
-        </div>
-        */}
+        ) : (
+          <div className="dropdown dropdown-end"> 
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src={user.photoURL || "https://i.ibb.co/2cWqV6v/user.jpg"} alt="User" />
+              </div>
+            </div>
+            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52">
+              <li><Link to="/add-review">Add Review</Link></li>
+              <li><Link to="/my-reviews">My Reviews</Link></li>
+              <li><button onClick={handleLogout}>Logout</button></li> 
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   )
