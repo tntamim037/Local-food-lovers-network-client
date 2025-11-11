@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router";
-// import NotFound from "../Pages/NotFound";
+
 import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
@@ -7,7 +7,8 @@ import Register from "../Pages/Register";
 import AddReview from "../Pages/AddReview";
 import ReviewDetails from "../Pages/ReviewDetails";
 import AllReviews from "../Pages/AllReviews";
-// import Login from "../Pages/Login";
+import NotFound from "../Pages/NotFound";
+
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +41,10 @@ export const router = createBrowserRouter([
         path: "/add-review",
         Component: AddReview,
       },
-      {
+      
+    ],
+  },
+  {
         path: "/login",
         Component: Login,
       },
@@ -48,6 +52,8 @@ export const router = createBrowserRouter([
         path: "/register",
         Component: Register,
       },
-    ],
+      {
+    path: "*",
+    element: <NotFound />,
   },
 ]);

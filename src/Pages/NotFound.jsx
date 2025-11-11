@@ -1,20 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import electricianImage from '../assets/ElectricianImage .png';
 const NotFound = () => {
   return (
     <div className="flex items-center justify-center min-h-[90vh] px-4 py-12 bg-linear-to-b from-orange-50 to-white">
       <div className="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between gap-12">
-        <div className="w-full md:w-1/2 flex justify-center order-2 md:order-1">
+        <div className="w-full md:w-1/2 flex justify-center ">
           <img
-            // src="https://i.ibb.co/QvXk3qC/404-error-page.png"
-            src={``}
+            src={electricianImage}
             alt="404 Error "
             className="w-80 md:w-[420px] lg:w-[480px] drop-shadow-lg"
           />
         </div>
 
-        <div className="w-full md:w-1/2 text-center md:text-left order-1 md:order-2 space-y-5">
+        <div className="w-full md:w-1/2 text-center md:text-left space-y-5">
           <h1 className="text-8xl md:text-9xl font-extrabold text-orange-600">
             404
           </h1>
@@ -22,8 +21,7 @@ const NotFound = () => {
             Page Not Found 
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            The page you’re looking for might have been removed, had its name
-            changed, or is temporarily unavailable. Click below to go back home.
+            Oops! The page you’re looking for doesn’t exist
           </p>
 
           <Link
