@@ -1,12 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
+import LoadingSpinner from "./LoadingSpinner";
 
 const AddReview = () => {
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
+
+   const [loading, setLoading] = useState(false)
 
   const handleAddReview = (e) => {
     e.preventDefault()
@@ -23,7 +26,7 @@ const AddReview = () => {
       date: new Date().toLocaleDateString(), 
     }
 
-  
+  setLoading(true)
     fetch("http://localhost:3000/reviews", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -42,7 +45,11 @@ const AddReview = () => {
         }
       })
       .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   }
+
+ if (loading) return <LoadingSpinner></LoadingSpinner>
+
 
   return (
     <div className="max-w-xl mx-auto bg-white shadow-lg rounded-2xl p-6 mt-10">

@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
+import LoadingSpinner from "./LoadingSpinner";
 
 const FeaturedReviews = ({ reviews }) => {
+  if (!reviews || reviews.length === 0) {
+    return <LoadingSpinner></LoadingSpinner>
+  }
   const topsix = reviews.slice(0, 6);
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-10">
