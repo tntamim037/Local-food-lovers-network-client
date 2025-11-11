@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
 
 const FeaturedReviews = ({ reviews }) => {
+  const topsix = reviews.slice(0, 6);
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-10">
       <div className="flex justify-between items-center mb-6">
@@ -18,7 +19,7 @@ const FeaturedReviews = ({ reviews }) => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {reviews.map((review) => (
+        {topsix.map((review) => (
           <ReviewCard key={review._id} review={review} />
         
         ))}

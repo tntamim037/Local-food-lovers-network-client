@@ -4,6 +4,7 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import AddReview from "../Pages/AddReview";
 // import Login from "../Pages/Login";
 
  
@@ -27,6 +28,10 @@ export const router=createBrowserRouter([
             },
 
 
+            {
+                path:"/add-review",
+                Component:AddReview
+            },
             {
                 path:"/login",
                 Component:Login
