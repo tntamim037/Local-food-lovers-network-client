@@ -23,7 +23,7 @@ const ReviewCard = ({ review }) => {
           {"⭐".repeat(review.rating)}
         </p>
         <Link
-          to={`/reviews/${review._id}`}
+          to={`/reviews/${review._id.toString()}`} 
           className="btn btn-sm bg-amber-500 hover:bg-amber-600 text-white w-full"
         >
           View Details

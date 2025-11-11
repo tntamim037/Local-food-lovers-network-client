@@ -5,6 +5,7 @@ import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import AddReview from "../Pages/AddReview";
+import ReviewDetails from "../Pages/ReviewDetails";
 // import Login from "../Pages/Login";
 
  
@@ -28,6 +29,10 @@ export const router=createBrowserRouter([
             },
 
 
+            {
+                path:"/reviews/:id",
+                Component:ReviewDetails
+            },
             {
                 path:"/add-review",
                 Component:AddReview
