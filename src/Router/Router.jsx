@@ -9,7 +9,8 @@ import ReviewDetails from "../Pages/ReviewDetails";
 import AllReviews from "../Pages/AllReviews";
 import NotFound from "../Pages/NotFound";
 import PrivateRoute from "./PrivateRoute";
-
+import MyReviews from "../Pages/MyReviews";
+import EditReview from "../Pages/EditReview";
 
 export const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/all-reviews",
-        Component: AllReviews
+        Component: AllReviews,
       },
 
       {
@@ -31,22 +32,39 @@ export const router = createBrowserRouter([
       },
       {
         path: "/add-review",
-        element:(<PrivateRoute>
-          <AddReview></AddReview>
-        </PrivateRoute>)
+        element: (
+          <PrivateRoute>
+            <AddReview></AddReview>
+          </PrivateRoute>
+        ),
       },
-      
+      {
+        path: "/my-reviews",
+        element: (
+          <PrivateRoute>
+            <MyReviews></MyReviews>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/edit-review/:id",
+        element: (
+          <PrivateRoute>
+            <EditReview></EditReview>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
-        path: "/login",
-        Component: Login,
-      },
-      {
-        path: "/register",
-        Component: Register,
-      },
-      {
+    path: "/login",
+    Component: Login,
+  },
+  {
+    path: "/register",
+    Component: Register,
+  },
+  {
     path: "*",
     element: <NotFound />,
   },
