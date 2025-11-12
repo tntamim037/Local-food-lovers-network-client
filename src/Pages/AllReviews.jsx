@@ -12,7 +12,8 @@ const AllReviews = () => {
     fetch(`http://localhost:3000/reviews${query ? `?foodName=${query}` : ""}`)
       .then((res) => res.json())
       .then((data) => {
-        setReviews(data)
+        const sortedData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+setReviews(sortedData)
       })
       .catch((err) => {
         console.error("Error fetching reviews:", err)

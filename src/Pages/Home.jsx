@@ -3,6 +3,7 @@ import HeroSection from './HeroSection';
 import { useLoaderData } from 'react-router';
 import FeaturedReviews from './FeaturedReviews';
 import LoadingSpinner from './LoadingSpinner';
+import TopStreetFoods from './TopStreetFoods';
 
 const Home = () => {
 
@@ -10,6 +11,7 @@ const Home = () => {
         <div>
             <HeroSection ></HeroSection>
             <FeaturedReviews></FeaturedReviews>
+            <TopStreetFoods></TopStreetFoods>
         </div>
     );
 };
