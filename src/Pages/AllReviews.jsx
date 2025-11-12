@@ -7,21 +7,20 @@ const AllReviews = () => {
   const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState("")
 
-  const fetchReviews = async (query = "") => {
-    try {
-      setLoading(true);
-      const res = await fetch(
-        `http://localhost:3000/reviews${query ? `?foodName=${query}` : ""}`
-      );
-      const data = await res.json()
-      setReviews(data)
-    } catch (err) {
-      console.error("Error fetching reviews:", err)
-    } finally {
-      setLoading(false)
-    }
+ const fetchReviews = (query = "") => {
+    setLoading(true)
+    fetch(`http://localhost:3000/reviews${query ? `?foodName=${query}` : ""}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data)
+      })
+      .catch((err) => {
+        console.error("Error fetching reviews:", err)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }
-
 
     useEffect(() => {
     fetchReviews()

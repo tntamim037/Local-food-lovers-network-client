@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner";
 
 const ReviewDetails = () => {
   const { id } = useParams()
   const [review, setReview] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const fetchReview = async () => {
-      try {
-        const res = await fetch(`http://localhost:3000/reviews/${id}`);
-        const data = await res.json()
-        if (data.success) setReview(data.result)
-      } catch (error) {
-        console.error(error)
-      } finally {
+ useEffect(() => {
+    fetch(`http://localhost:3000/reviews/${id}`)
+      .then((res) => res.json()) 
+      .then((data) => {
+        if (data.success) {
+          setReview(data.result)
+        }
         setLoading(false)
-      }
-    };
-    fetchReview()
+      })
+      .catch((error) => {
+        console.error("Error fetching review:", error)
+        setLoading(false)
+      })
   }, [id])
 
   if (loading)
-    return <div className="text-center py-10">Loading...</div>
+    return <LoadingSpinner></LoadingSpinner>
 
   if (!review)
     return (
