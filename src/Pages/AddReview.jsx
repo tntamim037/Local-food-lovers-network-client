@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import LoadingSpinner from "./LoadingSpinner";
+import { getAuth } from "firebase/auth";
 
 const AddReview = () => {
   const { user } = useContext(AuthContext)
@@ -20,21 +21,28 @@ const AddReview = () => {
       foodImage: form.foodImage.value,
       restaurantName: form.restaurantName.value,
       location: form.location.value,
-      rating: form.rating.value,
+      rating: Number(form.rating.value),
       reviewText: form.reviewText.value,
+      reviewerName: user?.displayName || "Anonymous",
       userEmail: user?.email, 
-      date: new Date().toLocaleDateString(), 
+      createdAt: new Date().toISOString(), 
     }
 
   setLoading(true)
-    fetch("http://localhost:3000/reviews", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newReview),
-    })
+
+  const auth = getAuth();
+    auth.currentUser?.getIdToken().then((token) => {
+      fetch("http://localhost:3000/reviews", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}` 
+        },
+        body: JSON.stringify(newReview),
+      })
       .then((res) => res.json())
       .then((data) => {
-        if (data.insertedId) {
+        if (data.insertedId || data.success) {
           Swal.fire({
             title: " Success!",
             text: "Review added successfully!",
@@ -42,10 +50,17 @@ const AddReview = () => {
           })
           form.reset()
           navigate("/")
+        } else {
+          Swal.fire({
+            title: "Failed!",
+            text: data.message || "Something went wrong!",
+            icon: "error",
+          })
         }
       })
       .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
+      .finally(() => setLoading(false))
+    })
   }
 
  if (loading) return <LoadingSpinner></LoadingSpinner>
