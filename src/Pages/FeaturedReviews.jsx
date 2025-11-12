@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
 import LoadingSpinner from "./LoadingSpinner";
 
-const FeaturedReviews = ({ reviews }) => {
-  if (!reviews || reviews.length === 0) {
-    return <LoadingSpinner></LoadingSpinner>
-  }
+const FeaturedReviews = () => {
+ const [reviews, setReviews] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch("http://localhost:3000/reviews") 
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.error("Error fetching reviews:", err)
+        setLoading(false)
+      })
+  }, [])
+
+  if (loading) return <LoadingSpinner></LoadingSpinner>
   const topsix = reviews.slice(0, 6);
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-10">

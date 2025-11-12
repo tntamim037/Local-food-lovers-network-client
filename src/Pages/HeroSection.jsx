@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import LoadingSpinner from "./LoadingSpinner";
 
-const HeroSection = ({ sliders }) => {
-  console.log(sliders);
+const HeroSection = () => {
+ const [sliders, setSliders] = useState([])
+  const [loading, setLoading] = useState(true)
 
+  useEffect(() => {
+    fetch("http://localhost:3000/sliders") 
+      .then((res) => res.json())
+      .then((data) => {
+        setSliders(data)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.error("Error fetching sliders:", err)
+        setLoading(false)
+      })
+  }, [])
+
+
+  if (loading) return <LoadingSpinner></LoadingSpinner>
   return (
     <section className="relative w-full overflow-hidden rounded-2xl shadow-md mb-12">
       <Swiper

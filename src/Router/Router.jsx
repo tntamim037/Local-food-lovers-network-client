@@ -18,15 +18,15 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        loader: async () => {
-          const [slidersRes, reviewsRes] = await Promise.all([
-            fetch("http://localhost:3000/sliders"),
-            fetch("http://localhost:3000/reviews"),
-          ]);
-          const sliders = await slidersRes.json();
-          const reviews = await reviewsRes.json();
-          return { sliders, reviews };
-        },
+        // loader: async () => {
+        //   const [slidersRes, reviewsRes] = await Promise.all([
+        //     fetch("http://localhost:3000/sliders"),
+        //     fetch("http://localhost:3000/reviews"),
+        //   ]);
+        //   const sliders = await slidersRes.json();
+        //   const reviews = await reviewsRes.json();
+        //   return { sliders, reviews };
+        // },
       },
       {
         path: "/all-reviews",
