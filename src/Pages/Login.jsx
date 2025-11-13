@@ -20,20 +20,24 @@ const Login = () => {
     e.preventDefault()
     setLoading(true)
     try {
-      await signInWithEmailAndPassword(auth, formData.email, formData.password)
+      const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password)
+      const token = await userCredential.user.getIdToken()
+  localStorage.setItem("token", token);
       toast.success("Login successful!")
       navigate(from, { replace: true })
     } catch (error) {
-      toast.error(error.code.replace("auth/", "").replace("-", " "))
+      toast.error(error.message || "Login failed!")
     } finally {
       setLoading(false)
     }
-  };
+  }
 
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider()
     try {
-      await signInWithPopup(auth, provider)
+      const userCredential = await signInWithPopup(auth, provider)
+      const token = await userCredential.user.getIdToken()
+      localStorage.setItem("token", token)
       toast.success("Login successful!")
       navigate(from, { replace: true })
     } catch (error) {

@@ -57,8 +57,8 @@ const Register = () => {
         photoURL: photo,
       });
 
-      toast.success("Registration successful!")
-      navigate("/")
+      toast.success("Registration successful! ")
+setTimeout(() => navigate("/"), 1000)
     } catch (error) {
       toast.error(error.code.replace("auth/", "").replace("-", " "))
     } finally {

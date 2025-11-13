@@ -11,6 +11,7 @@ import NotFound from "../Pages/NotFound";
 import PrivateRoute from "./PrivateRoute";
 import MyReviews from "../Pages/MyReviews";
 import EditReview from "../Pages/EditReview";
+import MyFavorites from "../Pages/MyFavorites";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <EditReview></EditReview>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/favorites",
+        element: (
+          <PrivateRoute>
+            <MyFavorites></MyFavorites>
           </PrivateRoute>
         ),
       },

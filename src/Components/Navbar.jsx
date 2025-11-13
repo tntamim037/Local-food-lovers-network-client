@@ -71,8 +71,8 @@ const Navbar = () => {
             <Link to="/login" className="btn btn-outline btn-sm border-amber-500 text-amber-600">
               Login
             </Link>
-            <Link to="/logout" className="btn btn-sm bg-amber-600 text-white hover:bg-amber-500">
-              Logout
+            <Link to="/register" className="btn btn-sm bg-amber-600 text-white hover:bg-amber-500">
+              Register
             </Link>
           </div>
         ) : (

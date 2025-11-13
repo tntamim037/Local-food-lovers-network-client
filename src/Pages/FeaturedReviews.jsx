@@ -21,7 +21,10 @@ const FeaturedReviews = () => {
   }, [])
 
   if (loading) return <LoadingSpinner></LoadingSpinner>
-  const topsix = reviews.slice(0, 6);
+  const topsix = reviews
+  .sort((a, b) => b.rating - a.rating)
+  .slice(0, 6)
+
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-10">
       <div className="flex justify-between items-center mb-6">
@@ -38,7 +41,7 @@ const FeaturedReviews = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {topsix.map((review) => (
-          <ReviewCard key={review._id} review={review} />
+          <ReviewCard key={review._id} review={review} showFavorite={false} />
         
         ))}
       </div>
