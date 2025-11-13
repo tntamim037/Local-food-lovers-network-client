@@ -1,16 +1,21 @@
-# React + Vite
+# 🍽️ Local Food Lovers Network
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Site URL:** 
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔐 **User Authentication:** Users can register and log in using email/password or Google sign-in.  
+- 💬 **Add & Manage Reviews:** Logged-in users can post, edit, and delete their own reviews easily.  
+- ❤️ **Favorite System:** Users can mark reviews as favorites and view them on a separate “My Favorites” page.  
+- ⭐ **Top Reviews Section:** The homepage highlights the most popular or top-rated reviews dynamically.  
+- 📱 **Responsive Design:** The website is fully responsive and works smoothly on mobile, tablet, and desktop devices.  
 
-## React Compiler
+## 🧰 Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend:** React, Tailwind CSS, React Router  
+- **Backend:** Node.js, Express.js, MongoDB  
+- **Authentication:** Firebase  
+- **Hosting:** ---- Hosting  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

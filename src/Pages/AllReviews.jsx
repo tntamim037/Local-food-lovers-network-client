@@ -3,37 +3,42 @@ import ReviewCard from "./ReviewCard";
 import LoadingSpinner from "./LoadingSpinner";
 
 const AllReviews = () => {
-  const [reviews, setReviews] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [search, setSearch] = useState("")
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
 
- const fetchReviews = (query = "") => {
-    setLoading(true)
-    fetch(`http://localhost:3000/reviews${query ? `?foodName=${query}` : ""}`)
+  const fetchReviews = (query = "") => {
+    setLoading(true);
+    fetch(
+      `https://local-food-lovers-network-server-pi.vercel.app/reviews${
+        query ? `?foodName=${query}` : ""
+      }`
+    )
       .then((res) => res.json())
       .then((data) => {
-        const sortedData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-setReviews(sortedData)
+        const sortedData = data.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        setReviews(sortedData);
       })
       .catch((err) => {
-        console.error("Error fetching reviews:", err)
+        console.error("Error fetching reviews:", err);
       })
       .finally(() => {
-        setLoading(false)
-      })
-  }
+        setLoading(false);
+      });
+  };
 
-    useEffect(() => {
-    fetchReviews()
-  }, [])
+  useEffect(() => {
+    fetchReviews();
+  }, []);
 
- 
   useEffect(() => {
     const timer = setTimeout(() => {
-      fetchReviews(search.trim())
-    }, 400)
-    return () => clearTimeout(timer)
-  }, [search])
+      fetchReviews(search.trim());
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [search]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-10">
@@ -61,7 +66,7 @@ setReviews(sortedData)
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default AllReviews;

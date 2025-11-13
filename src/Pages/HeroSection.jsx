@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -7,24 +7,23 @@ import "swiper/css/pagination";
 import LoadingSpinner from "./LoadingSpinner";
 
 const HeroSection = () => {
- const [sliders, setSliders] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [sliders, setSliders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/sliders") 
+    fetch("https://local-food-lovers-network-server-pi.vercel.app/sliders")
       .then((res) => res.json())
       .then((data) => {
-        setSliders(data)
-        setLoading(false)
+        setSliders(data);
+        setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching sliders:", err)
-        setLoading(false)
-      })
-  }, [])
+        console.error("Error fetching sliders:", err);
+        setLoading(false);
+      });
+  }, []);
 
-
-  if (loading) return <LoadingSpinner></LoadingSpinner>
+  if (loading) return <LoadingSpinner></LoadingSpinner>;
   return (
     <section className="relative w-full overflow-hidden rounded-2xl shadow-md mb-12">
       <Swiper
@@ -39,7 +38,6 @@ const HeroSection = () => {
             <div
               className="relative h-[60vh] bg-cover bg-center flex items-center justify-center text-white"
               style={{ backgroundImage: `url(${slide.imageUrl})` }}
-
             >
               <div className="absolute inset-0 bg-black/50"></div>
               <div className="relative z-10 text-center px-4 md:px-10">

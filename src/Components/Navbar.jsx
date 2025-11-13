@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import MyLink from "./MyLink";
 import { AuthContext } from "../Providers/AuthProvider";
 import toast from "react-hot-toast";
@@ -17,7 +17,7 @@ const Navbar = () => {
       <li><MyLink to="/">Home</MyLink></li>
       <li><MyLink to="/add-review">Add Review</MyLink></li>
       <li><MyLink to="/all-reviews">All Reviews</MyLink></li>
-      <li><MyLink to="/favorites">My Favorites</MyLink></li>
+      <li><MyLink to="/my-reviews">My Reviews</MyLink></li>
     </>
   )
 
@@ -46,7 +46,7 @@ const Navbar = () => {
           
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1000 mt-3 w-52 p-2 shadow"
           >
             {navLinks}
           </ul>
@@ -71,7 +71,7 @@ const Navbar = () => {
             <Link to="/login" className="btn btn-outline btn-sm border-amber-500 text-amber-600">
               Login
             </Link>
-            <Link to="/register" className="btn btn-sm bg-amber-600 text-white hover:bg-amber-500">
+            <Link to="/register" className="btn btn-sm bg-amber-600 text-white hover:bg-amber-500 hidden sm:inline-flex">
               Register
             </Link>
           </div>

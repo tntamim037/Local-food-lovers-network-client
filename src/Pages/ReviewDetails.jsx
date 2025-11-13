@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router";
 import LoadingSpinner from "./LoadingSpinner";
 
 const ReviewDetails = () => {
@@ -8,7 +8,7 @@ const ReviewDetails = () => {
   const [loading, setLoading] = useState(true)
 
  useEffect(() => {
-    fetch(`http://localhost:3000/reviews/${id}`)
+    fetch(`https://local-food-lovers-network-server-pi.vercel.app/reviews/${id}`)
       .then((res) => res.json()) 
       .then((data) => {
         if (data.success) {

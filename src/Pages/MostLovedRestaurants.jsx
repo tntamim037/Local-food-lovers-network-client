@@ -2,24 +2,23 @@ import React, { useEffect, useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 
 const MostLovedRestaurants = () => {
-  const [restaurants, setRestaurants] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [restaurants, setRestaurants] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/restaurant") 
+    fetch("https://local-food-lovers-network-server-pi.vercel.app/restaurant")
       .then((res) => res.json())
       .then((data) => {
-        setRestaurants(data)
-        setLoading(false)
+        setRestaurants(data);
+        setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching restaurants:", err)
-        setLoading(false)
-      })
-  }, [])
+        console.error("Error fetching restaurants:", err);
+        setLoading(false);
+      });
+  }, []);
 
-  if (loading)
-    return <LoadingSpinner></LoadingSpinner>
+  if (loading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-10">
@@ -42,10 +41,7 @@ const MostLovedRestaurants = () => {
               <h3 className="font-semibold text-lg text-amber-600 mb-1">
                 {res.restaurantName}
               </h3>
-              <p className="text-sm text-gray-500 mb-1">
-                
-                 {res.location}
-              </p>
+              <p className="text-sm text-gray-500 mb-1">{res.location}</p>
               <p className="text-sm text-gray-700 mb-1">
                 Reviewed by: {res.reviewerName}
               </p>

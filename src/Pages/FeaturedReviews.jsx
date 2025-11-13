@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import ReviewCard from "./ReviewCard";
 import LoadingSpinner from "./LoadingSpinner";
 
 const FeaturedReviews = () => {
- const [reviews, setReviews] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/reviews") 
+    fetch("https://local-food-lovers-network-server-pi.vercel.app/reviews")
       .then((res) => res.json())
       .then((data) => {
-        setReviews(data)
-        setLoading(false)
+        setReviews(data);
+        setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching reviews:", err)
-        setLoading(false)
-      })
-  }, [])
+        console.error("Error fetching reviews:", err);
+        setLoading(false);
+      });
+  }, []);
 
-  if (loading) return <LoadingSpinner></LoadingSpinner>
-  const topsix = reviews
-  .sort((a, b) => b.rating - a.rating)
-  .slice(0, 6)
+  if (loading) return <LoadingSpinner></LoadingSpinner>;
+  const topsix = reviews.sort((a, b) => b.rating - a.rating).slice(0, 6);
 
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-10">
@@ -42,7 +40,6 @@ const FeaturedReviews = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {topsix.map((review) => (
           <ReviewCard key={review._id} review={review} showFavorite={false} />
-        
         ))}
       </div>
     </section>

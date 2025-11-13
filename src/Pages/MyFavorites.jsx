@@ -7,7 +7,7 @@ const MyFavorites = () => {
 
   useEffect(() => {
   if (user) {
-    fetch(`http://localhost:3000/favorites?email=${user.email}`, {
+    fetch(`https://local-food-lovers-network-server-pi.vercel.app/favorites?email=${user.email}`, {
   headers: {
      authorization: `Bearer ${localStorage.getItem("token")}`, 
    },
@@ -26,7 +26,7 @@ const MyFavorites = () => {
 
 
   const handleDelete = async (id) => {
-    const res = await fetch(`http://localhost:3000/favorites/${id}`, {
+    const res = await fetch(`https://local-food-lovers-network-server-pi.vercel.app/favorites/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`,

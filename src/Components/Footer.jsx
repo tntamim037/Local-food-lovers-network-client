@@ -2,7 +2,7 @@ import React from "react";
 import { BiX } from "react-icons/bi";
 import { BsInstagram, BsTwitterX } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const Footer = () => {
   return (
